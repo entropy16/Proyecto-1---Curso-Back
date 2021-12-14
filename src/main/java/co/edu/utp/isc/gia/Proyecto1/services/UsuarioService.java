@@ -21,13 +21,43 @@ public class UsuarioService {
             usuario.setId(1);
             listaUsuarios.add(usuario);
         } else {
-            usuario.setId(listaUsuarios.size());
+            Usuario lastUser = listaUsuarios.get(listaUsuarios.size() - 1);
+            int lastId = lastUser.getId();
+            usuario.setId(lastId + 1);
             listaUsuarios.add(usuario);
         }
         return usuario;
     }
 
     public List<Usuario> obtenerLista() {
+        
         return this.listaUsuarios;
+    }
+
+    public Usuario obtenerUsuario(int id) {
+        for (Usuario user:listaUsuarios) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public void borrarUsuario(int id) {
+        for (Usuario user:listaUsuarios) {
+            if (user.getId() == id) {
+                listaUsuarios.remove(user);
+            }
+        }
+    }
+
+    public void actualizarUsuario(int id, Usuario usuario) {
+        for (Usuario user:listaUsuarios) {
+            if (user.getId() == id) {
+                listaUsuarios.remove(user);
+                usuario.setId(id);
+                listaUsuarios.add(usuario);
+            }
+        }
     }
 }

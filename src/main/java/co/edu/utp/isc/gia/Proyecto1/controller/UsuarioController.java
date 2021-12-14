@@ -23,4 +23,19 @@ public class UsuarioController {
     public List<Usuario> obtenerLista(){
         return usuarioService.obtenerLista();
     }
+
+    @GetMapping("obtenerUsuario")
+    public Usuario obtenerUsuario(@RequestParam int id){
+        return usuarioService.obtenerUsuario(id);
+    }
+
+    @PutMapping("actualizarUsuario/{id}")
+    public void actualizarUsuario(@PathVariable("id") int id, @RequestBody Usuario usuario){
+        usuarioService.actualizarUsuario(id, usuario);
+    }
+
+    @GetMapping("borrarUsuario")
+    public void borrarUsuario(@RequestParam int id){
+        usuarioService.borrarUsuario(id);
+    }
 }
